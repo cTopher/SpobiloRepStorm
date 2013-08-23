@@ -1,7 +1,20 @@
-@(message: String)
+@main("SpobiloRepStorm") {
+    <button id="toggle">Start annoying people</button>
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message)
-    
+    <script type="text/javascript">
+        $(function() {
+            var started = false;
+            $('#toggle').click(function() {
+                if(started) {
+                    $.post('/stopAlarm');
+                    started = false;
+                    $(this).html("Start annoying people");
+                } else {
+                    $.post('/startAlarm');
+                    started = true;
+                    $(this).html("Stop annoying people");
+                }
+            });
+        });
+    </script>
 }
